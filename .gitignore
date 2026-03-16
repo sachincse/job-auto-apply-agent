@@ -1,0 +1,7 @@
+.env
+data/jobs.db
+data/screenshots/
+data/resume.pdf
+__pycache__/
+*.pyc
+.venv/

@@ -1,0 +1,86 @@
+# ===========================================
+# Your Profile — Edit this with your details
+# ===========================================
+
+personal:
+  name: "Your Name"
+  email: "you@example.com"
+  phone: "+1-555-000-0000"
+  linkedin_url: "https://linkedin.com/in/yourprofile"
+  portfolio_url: "https://yoursite.com"
+  location: "Remote"
+
+skills:
+  primary: ["Python", "JavaScript", "TypeScript"]
+  frameworks: ["FastAPI", "React", "Node.js"]
+  tools: ["Docker", "AWS", "PostgreSQL", "Redis"]
+  soft: ["Team leadership", "Communication", "Problem solving"]
+
+experience:
+  years: 3
+  level: "mid"  # junior, mid, senior, lead
+  summary: |
+    Software engineer with 3 years of experience building
+    scalable web applications and APIs. Strong background
+    in Python and cloud infrastructure.
+
+job_search:
+  keywords:
+    - "software engineer"
+    - "backend developer"
+    - "python developer"
+    - "full stack developer"
+  location: "Remote"
+  salary_min: 80000
+  salary_max: 150000
+  job_type: "full-time"         # full-time, contract, part-time
+  experience_level: "mid"       # junior, mid, senior
+  platforms:
+    adzuna: true
+    remotive: true
+    linkedin: true
+    indeed: false               # Indeed blocks bots aggressively
+  score_threshold: 70
+  max_results_per_platform: 25
+
+messaging:
+  auto_send_interested: false   # true = auto-send, false = save as draft
+  auto_send_decline: false
+  availability: "weekdays between 10am-4pm EST"
+  min_fit_score_to_reply: 50
+
+reporting:
+  channels:
+    telegram: true
+    email: true
+  schedule:
+    daily: "20:00"
+    weekly: "SUN 20:00"
+  telegram:
+    send_instant_alerts: true
+    alert_threshold: 90
+  email:
+    include_csv: false
+
+scheduler:
+  timezone: "US/Eastern"
+  jobs:
+    search:
+      cron: "0 8 * * *"
+      enabled: true
+    apply:
+      cron: "0 9 * * *"
+      enabled: true
+      max_per_run: 10
+    linkedin_scan:
+      cron: "0 */6 * * *"
+      enabled: true
+    check_messages:
+      cron: "0 */2 * * *"
+      enabled: true
+    daily_report:
+      cron: "0 20 * * *"
+      enabled: true
+    weekly_report:
+      cron: "0 20 * * 0"
+      enabled: true
