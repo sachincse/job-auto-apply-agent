@@ -1,0 +1,21 @@
+Job Hunt Report — {{ date }}
+========================================
+
+SEARCH SUMMARY
+  Jobs found today: {{ stats.jobs_found }}
+
+APPLICATIONS
+  Applied today: {{ stats.applied_today }}
+  Total applied: {{ stats.total_applied }}
+
+LINKEDIN ENGAGEMENT
+  Posts engaged: {{ stats.posts_engaged }}
+
+MESSAGES
+  New messages: {{ stats.messages_received }}
+  Replies sent: {{ stats.replies_sent }}
+
+TOP MATCHES
+{% for job in top_jobs %}
+  - {{ job.title }} @ {{ job.company }} — Score: {{ job.fit_score }}
+{% endfor %}
