@@ -1,7 +1,32 @@
+# Environment
 .env
+.env.*
+.venv/
+venv/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Data
 data/jobs.db
 data/screenshots/
 data/resume.pdf
-__pycache__/
-*.pyc
-.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Playwright
+playwright-report/
+test-results/
