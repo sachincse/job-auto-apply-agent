@@ -54,6 +54,26 @@ Profile of the applicant (Kritika Saraswat):
 - Email: REDACTED@example.com  |  Phone: +9100000000001
 """
 
+SACHIN_PROFILE = """\
+Profile of the applicant (Sachin Singh):
+- Role: Senior ML Engineer, 8 years experience (currently at TrueBalance)
+- Current company: TrueBalance (regulated fintech / lending)
+- Current CTC: 55 LPA fixed (5500000 INR per annum)
+- Expected CTC: 80 LPA (8000000 INR) for India; for international roles seeks
+  Berlin €110k / Dubai equivalent / Tokyo equivalent — visa sponsorship REQUIRED
+- Notice period: 2 months / 60 days
+- Current location: Bangalore, India
+- Willing to relocate internationally with visa sponsorship: YES (Berlin / Dubai / Tokyo)
+- Authorized to work without sponsorship outside India: NO
+- Gender: Male
+- Highest qualification: Postgraduate
+- Open to: full-time, contract, freelance, remote, hybrid
+- Skills: Python, Machine Learning, GenAI/LLM, LangGraph, MCP, RAG, vector DBs
+  (Weaviate, Qdrant), Claude/GPT/Llama, AWS, Azure, MLOps, real-time inference
+  at scale (sub-200ms at 10M+ users)
+- Email: REDACTED@example.com  |  Phone: +9100000000000
+"""
+
 
 class VisionDecision(TypedDict):
     action: Literal["click_text", "type_text", "skip"]
@@ -77,14 +97,19 @@ def _shell_quote(s: str) -> str:
     return '"' + s.replace('"', '""') + '"'
 
 
-def _build_prompt(question: str) -> str:
+def _build_prompt(question: str, profile: str = None) -> str:
+    """Build the Claude prompt. `profile` MUST be passed by caller — defaults to
+    Kritika's profile only for legacy compatibility. New code must pass it explicitly.
+    """
+    if profile is None:
+        profile = KRITIKA_PROFILE  # legacy default
     return f"""You're looking at the right-side chatbot panel of a Naukri.com job application form.
 
 Current question: "{question}"
 
-{KRITIKA_PROFILE}
+{profile}
 
-Look at the screenshot. Decide what Kritika should do.
+Look at the screenshot. Decide what the applicant should do.
 
 Respond with EXACTLY this format (three lines):
 ACTION: <CLICK|TYPE|SKIP>
@@ -94,23 +119,23 @@ REASONING: <one sentence>
 Where ACTION is one of:
   CLICK  — radio buttons / dropdown options are visible. VALUE = EXACT on-screen
            text of the option to click. Match case exactly. Pick the option that
-           best fits Kritika's profile. NEVER pick "No experience", "Less than 3",
-           "0 years", or any option that would disqualify her.
+           best fits the applicant's profile. NEVER pick "No experience",
+           "Less than 3", "0 years", or any option that would disqualify them.
   TYPE   — a text input box is visible. VALUE = short factual answer to type.
   SKIP   — question is risky/ambiguous/could submit a wrong answer. VALUE = empty.
 
-Examples:
+Examples (use the applicant's actual profile, not these literal answers):
 ACTION: CLICK
 VALUE: 5-7 years
-REASONING: Kritika has 7 years experience, fits the 5-7 band.
+REASONING: Profile shows 7 years experience, fits the 5-7 band.
 
 ACTION: TYPE
-VALUE: Sequoia
-REASONING: Her current company is Sequoia.
+VALUE: <applicant's current employer name>
+REASONING: Profile lists this as the current employer.
 
 ACTION: SKIP
 VALUE:
-REASONING: Question asks about certifications she may not hold.
+REASONING: Question asks about certifications the applicant may not hold.
 """
 
 
@@ -118,6 +143,7 @@ async def vision_decide(
     screenshot_bytes: bytes,
     question: str,
     model: str = "claude-haiku-4-5-20251001",
+    profile: str = None,
 ) -> VisionDecision | None:
     """Get a CLICK/TYPE/SKIP decision from Claude.
 
@@ -131,9 +157,9 @@ async def vision_decide(
 
     decision: VisionDecision | None = None
     if _has_api_key():
-        decision = await _decide_via_sdk(screenshot_bytes, question, model)
+        decision = await _decide_via_sdk(screenshot_bytes, question, model, profile)
     if decision is None and _has_claude_cli():
-        decision = await _decide_via_cli(screenshot_bytes, question)
+        decision = await _decide_via_cli(screenshot_bytes, question, profile)
 
     if decision is None:
         logger.warning("  [vision] no backend available — set ANTHROPIC_API_KEY or install claude CLI")
@@ -148,6 +174,7 @@ async def _decide_via_sdk(
     screenshot_bytes: bytes,
     question: str,
     model: str,
+    profile: str = None,
 ) -> VisionDecision | None:
     """Direct Anthropic SDK call with inline image."""
     client = Anthropic()
@@ -162,7 +189,7 @@ async def _decide_via_sdk(
                     {"type": "image", "source": {
                         "type": "base64", "media_type": "image/png", "data": img_b64,
                     }},
-                    {"type": "text", "text": _build_prompt(question)},
+                    {"type": "text", "text": _build_prompt(question, profile)},
                 ],
             }],
         )
@@ -176,6 +203,7 @@ async def _decide_via_sdk(
 async def _decide_via_cli(
     screenshot_bytes: bytes,
     question: str,
+    profile: str = None,
 ) -> VisionDecision | None:
     """Spawn `claude -p` subprocess and let Claude Code Read the screenshot.
 
@@ -188,7 +216,7 @@ async def _decide_via_cli(
 
     prompt = (
         f"Read the screenshot at {img_path}. "
-        + _build_prompt(question)
+        + _build_prompt(question, profile)
         + "\n\nIMPORTANT: Output ONLY the three lines (ACTION/VALUE/REASONING). "
         + "No preamble, no markdown, no code fence. Just the three lines."
     )

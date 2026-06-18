@@ -51,7 +51,7 @@ except ImportError:
     HAS_STEALTH = False
 
 from src.config import BASE_DIR
-from src.vision_fallback import vision_decide
+from src.vision_fallback import vision_decide, SACHIN_PROFILE
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("naukri-sachin-chatbot")
@@ -553,7 +553,7 @@ async def _vision_fallback(detail_page, question: str):
             "height": viewport["height"],
         }
         shot = await detail_page.screenshot(clip=clip)
-        return await vision_decide(shot, question)
+        return await vision_decide(shot, question, profile=SACHIN_PROFILE)
     except Exception as e:
         logger.warning(f"  [vision] screenshot/decide failed: {str(e)[:120]}")
         return None
