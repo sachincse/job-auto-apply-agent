@@ -98,12 +98,12 @@ form_answers:
   has_criminal_record: false             # NO
   has_drug_history: false                # NO
   has_security_clearance: false          # NO
-  years_of_experience: 8
-  current_salary_inr: 5500000            # ₹55 LPA fixed
-  current_salary_eur: 60000              # ~€60,000 equivalent
-  expected_salary_eur: 110000            # Berlin target
-  expected_salary_min_eur: 90000
-  expected_salary_max_eur: 130000
+  years_of_experience: 8                 # your total years
+  current_salary_inr: 0                   # your current annual CTC in INR
+  current_salary_eur: 0                   # equivalent in EUR
+  expected_salary_eur: 0                  # target / asked annual in EUR
+  expected_salary_min_eur: 0              # floor — don't accept below this
+  expected_salary_max_eur: 0              # ceiling for negotiation
   current_location: "Bengaluru, India"
   preferred_locations: ["Berlin", "Munich", "Hamburg", "Remote (EU)", "Remote (Worldwide)"]
   github_url: "https://github.com/your-github-handle"
@@ -149,14 +149,14 @@ job_search:
       keywords_extra: ["remote", "worldwide", "global"]
       visa_note: "No visa needed"
       salary_range: "$100,000 - $200,000"
-  # Salary in EUR (Berlin market — primary target)
-  salary_min_eur: 90000       # Minimum acceptable for married couple in Berlin
-  salary_target_eur: 110000   # Realistic target (Senior ML + 8 YoE)
-  salary_ideal_eur: 130000    # Top tier (BMW, Meta, Google, Zalando senior roles)
-  current_ctc_inr: 5500000    # ₹55L FIXED (clarified by user)
+  # Salary targets — fill in your numbers
+  salary_min_eur: 0           # floor
+  salary_target_eur: 0        # realistic ask
+  salary_ideal_eur: 0         # top tier
+  current_ctc_inr: 0          # your current CTC if Indian role
   # Keep USD for Adzuna compatibility
-  salary_min: 95000           # USD equivalent for Adzuna filter
-  salary_max: 200000
+  salary_min: 0               # USD equivalent for Adzuna filter
+  salary_max: 0
   currency: "EUR"
   job_type: "any"   # full-time, part-time, contract, freelance — all OK
   include_part_time: true

@@ -18,6 +18,9 @@ data/profile_kritika.yaml
 data/form_qa.yaml
 data/form_qa_kritika.yaml
 data/jobs.db
+
+# Personal interview-prep notes — not part of the auto-apply tooling
+docs/
 data/screenshots/
 data/apply_screenshots/
 data/resume.pdf
