@@ -40,6 +40,15 @@ TEMPLATES = {
         "8yr senior ML at TrueBalance — LangGraph + RAG (Weaviate/Qdrant) under RBI, "
         "sub-200ms at 10M+ users. Would value swapping notes."
     ),
+    # Pre-apply outreach: candidate hasn't formally applied yet, just expressing
+    # interest. Used for high-value targets like Google India where you want
+    # recruiter ack BEFORE submitting through the portal.
+    "v3_interest": (
+        "Hi {first_name} — 8yr senior ML at TrueBalance (regulated fintech, "
+        "sub-200ms RAG + multi-agent LLM at 10M+ users). Targeting {role} at "
+        "{company} — {company_context} lines up with my stack. Would value 15 "
+        "min on whether my background fits your team's hiring."
+    ),
 }
 
 # Trim sequence applied in order until ≤300. Workflow design notes (b).
