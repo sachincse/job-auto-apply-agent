@@ -12,10 +12,35 @@ __pycache__/
 dist/
 build/
 
-# Data
+# Data — DB, credentials, PII profiles, large generated artifacts
+data/profile.yaml
+data/profile_kritika.yaml
+data/form_qa.yaml
+data/form_qa_kritika.yaml
 data/jobs.db
 data/screenshots/
+data/apply_screenshots/
 data/resume.pdf
+data/*_creds.json
+data/cookies/
+data/agent.log
+data/*.log
+data/*.png
+data/*_apply/
+data/*_results.json
+data/*_jobs.json
+data/bundesagentur_*.json
+data/bundesagentur_*.md
+data/bundesagentur_*.csv
+data/disney_jd/
+data/freelance_probe.txt
+data/greenhouse_probe.txt
+data/gulf_probe/
+
+# Ruflo / Claude-Flow scaffolding (machine-local, not source-controlled)
+.claude-flow/
+.claude/_archived/
+.claude/scheduled_tasks.lock
 
 # IDE
 .vscode/

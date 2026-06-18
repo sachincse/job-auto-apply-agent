@@ -1,0 +1,312 @@
+# ===========================================
+# Your Profile — ML Engineer targeting Berlin/Canada/Dubai
+# ===========================================
+
+personal:
+  name: "Your Name"
+  first_name: "FirstName"
+  last_name: "LastName"
+  email: "your.email@example.com"
+  phone: "+9100000000000"            # No spaces/dashes — most form-friendly
+  phone_pretty: "+91 00000 00000"
+  linkedin_url: "https://www.linkedin.com/in/your-linkedin-handle/"
+  portfolio_url: "https://github.com/your-github-handle"
+  current_location: "Bangalore, India"
+  city: "Bangalore"
+  state: "Karnataka"
+  country: "India"
+  postal_code: "560001"             # Generic Bangalore PIN, replace with actual if needed
+  nationality: "Indian"
+  visa_status: "Requires work visa sponsorship (EU Blue Card)"
+
+skills:
+  primary: ["Python", "TensorFlow", "PyTorch", "Scikit-learn", "SQL"]
+  ml_core: ["Deep Learning", "NLP", "Computer Vision", "Transformers", "LLMs"]
+  frameworks: ["FastAPI", "Flask", "LangChain", "HuggingFace", "Keras"]
+  mlops: ["MLflow", "Docker", "Kubernetes", "AWS SageMaker", "GCP Vertex AI"]
+  data: ["Pandas", "NumPy", "Spark", "Airflow", "dbt"]
+  cloud: ["AWS", "GCP", "Azure ML"]
+  tools: ["Git", "Linux", "CI/CD", "Terraform", "PostgreSQL", "Redis", "MongoDB"]
+  genai: ["RAG", "Fine-tuning", "Prompt Engineering", "Vector Databases", "LLM Agents"]
+  soft: ["Team leadership", "Cross-functional collaboration", "Technical mentoring", "Problem solving"]
+
+experience:
+  years: 8
+  level: "senior"  # junior, mid, senior, lead
+  marital_status: "married"  # spouse visa/family reunification applicable
+  education: "B.Tech Computer Science, Your University, India"
+  certifications: ["TensorFlow Developer Certificate", "LangChain & LangGraph Specialist"]
+  current_employer: "YourCurrentEmployer"
+  notice_period_days: 60
+  earliest_start_date: "flexible / anytime"
+  companies:
+    - name: "YourCurrentEmployer"
+      role: "Senior ML Engineer (current)"
+      current: true
+    - name: "ResMed"
+      role: "Machine Learning Engineer"
+      highlights:
+        - "Led GenAI-powered outreach optimization platform using XGBoost, LLMs, and internal APIs"
+        - "Integrated ElevenLab voice assistant for patient interactions"
+        - "Built medical report analysis pipeline with RAG architecture on AWS"
+        - "Implemented multi-container SageMaker endpoints for cost optimization"
+        - "Built real-time model monitoring with Datadog, Prometheus, and Grafana"
+    - name: "Tiger Analytics"
+      role: "ML Engineer"
+      highlights:
+        - "Designed MLOps platform on AWS for NatWest (showcased at AWS re:Invent)"
+        - "Built NLP use cases on chatbot transcripts: Reason of Call, Call Resolution, Sentiment Analysis"
+        - "Implemented data quality checks with Deequ library on Databricks for Mars"
+  summary: |
+    Senior Machine Learning Engineer with 8 years of experience in AI development,
+    MLOps, and cloud optimization. Built GenAI-powered platforms at ResMed using
+    XGBoost, LLMs, RAG architecture, and AWS SageMaker. Designed MLOps platform
+    for NatWest at Tiger Analytics (showcased at AWS re:Invent). Expertise in
+    model deployment, real-time monitoring, and production ML systems at scale.
+    Looking for senior/lead ML roles in Berlin with visa sponsorship.
+    Married — spouse is a Data Scientist (eligible for family reunification with full work rights).
+    No children. Flexible start date. Currently at YourCurrentEmployer (60-day notice).
+
+preferences:
+  work_authorization: "any"   # EU Blue Card preferred, but open to any work visa type
+  work_mode: "any"            # Remote, hybrid, onsite — all acceptable
+  company_size: "any"         # Startups, scaleups, big tech — all acceptable
+  company_blacklist:
+    - "YourCurrentEmployer"    # Current employer — don't apply
+    - "ResMed"         # Past employer
+    - "Tiger Analytics"  # Past employer
+  require_relocation_package: true  # Company must cover relocation costs
+  german_level: "none"
+  has_children: false
+
+spouse:
+  profession: "Data Scientist"
+  will_look_for_work_in_berlin: true
+
+# Standard answers for application form questions (used by all auto-apply runners)
+form_answers:
+  notice_period_months: 2
+  notice_period_days: 60
+  notice_period_text: "2 months"
+  visa_sponsorship_required: true       # YES — needs sponsorship
+  authorized_without_sponsorship: false # NO — not authorized without sponsorship
+  willing_to_relocate: true              # YES
+  fluent_english: true                   # YES (proficiency: Native/Fluent)
+  open_to_remote: true                   # YES
+  open_to_hybrid: true                   # YES
+  open_to_onsite: true                   # YES
+  has_criminal_record: false             # NO
+  has_drug_history: false                # NO
+  has_security_clearance: false          # NO
+  years_of_experience: 8
+  current_salary_inr: 5500000            # ₹55 LPA fixed
+  current_salary_eur: 60000              # ~€60,000 equivalent
+  expected_salary_eur: 110000            # Berlin target
+  expected_salary_min_eur: 90000
+  expected_salary_max_eur: 130000
+  current_location: "Bengaluru, India"
+  preferred_locations: ["Berlin", "Munich", "Hamburg", "Remote (EU)", "Remote (Worldwide)"]
+  github_url: "https://github.com/your-github-handle"
+  linkedin_url: "https://www.linkedin.com/in/your-linkedin-handle/"
+  start_date_text: "Anytime / flexible (after 2-month notice)"
+  earliest_start_date: "2026-07-15"      # ~60 days from May 10
+  ethnicity: "Decline to answer"         # Standard for US compliance forms
+  gender: "Decline to answer"
+  veteran_status: "Decline to answer"
+  disability_status: "Decline to answer"
+
+job_search:
+  keywords:
+    - "machine learning engineer"
+    - "senior ML engineer"
+    - "deep learning engineer"
+    - "NLP engineer"
+    - "AI engineer"
+    - "MLOps engineer"
+    - "generative AI engineer"
+    - "LLM engineer"
+    - "computer vision engineer"
+    - "data scientist senior"
+    - "applied scientist"
+    - "ML lead"
+    - "AI/ML engineer"
+  location_targets:
+    - name: "Berlin"
+      country: "Germany"
+      adzuna_country: "de"
+      keywords_extra: ["Berlin", "Germany", "EU"]
+      visa_note: "EU Blue Card available for skilled workers"
+      salary_range: "€65,000 - €120,000"
+    - name: "Canada"
+      country: "Canada"
+      adzuna_country: "ca"
+      keywords_extra: ["Canada", "Toronto", "Vancouver", "Montreal"]
+      visa_note: "Express Entry / Global Talent Stream"
+      salary_range: "CAD 90,000 - 170,000"
+    - name: "Remote"
+      country: "Global"
+      adzuna_country: "us"
+      keywords_extra: ["remote", "worldwide", "global"]
+      visa_note: "No visa needed"
+      salary_range: "$100,000 - $200,000"
+  # Salary in EUR (Berlin market — primary target)
+  salary_min_eur: 90000       # Minimum acceptable for married couple in Berlin
+  salary_target_eur: 110000   # Realistic target (Senior ML + 8 YoE)
+  salary_ideal_eur: 130000    # Top tier (BMW, Meta, Google, Zalando senior roles)
+  current_ctc_inr: 5500000    # ₹55L FIXED (clarified by user)
+  # Keep USD for Adzuna compatibility
+  salary_min: 95000           # USD equivalent for Adzuna filter
+  salary_max: 200000
+  currency: "EUR"
+  job_type: "any"   # full-time, part-time, contract, freelance — all OK
+  include_part_time: true
+  part_time_keywords:
+    - "part time machine learning"
+    - "part time AI engineer"
+    - "freelance ML engineer"
+    - "contract AI engineer"
+    - "ML consultant"
+  experience_level: "senior"
+  must_sponsor_visa: true
+  platforms:
+    adzuna: true
+    remotive: true
+    arbeitnow: true    # Free API — visa-sponsored Germany jobs, no key needed
+    linkedin: true      # Re-enabled — Easy Apply mode only, human-like delays
+    indeed: false
+  score_threshold: 65
+  max_results_per_platform: 30
+
+  # Additional job portals to check (used by career_advisor)
+  extra_portals:
+    - name: "StepStone"
+      url: "https://www.stepstone.de"
+      region: "Germany/Berlin"
+      notes: "Top German job board — great for Berlin roles"
+    - name: "Arbeitnow"
+      url: "https://www.arbeitnow.com"
+      region: "Germany/EU"
+      notes: "English-speaking jobs in Germany, visa-sponsored"
+    - name: "LinkedIn Jobs Germany"
+      url: "https://www.linkedin.com/jobs/search/?location=Berlin"
+      region: "Berlin"
+    - name: "Indeed Canada"
+      url: "https://ca.indeed.com"
+      region: "Canada"
+    - name: "Job Bank Canada"
+      url: "https://www.jobbank.gc.ca"
+      region: "Canada"
+      notes: "Official Canadian government job portal"
+    - name: "Bayt"
+      url: "https://www.bayt.com"
+      region: "Dubai/UAE"
+      notes: "Largest job portal in Middle East"
+    - name: "GulfTalent"
+      url: "https://www.gulftalent.com"
+      region: "Dubai/UAE"
+      notes: "Premium jobs in Gulf countries"
+    - name: "Naukri Gulf"
+      url: "https://www.naukrigulf.com"
+      region: "Dubai/UAE"
+      notes: "Popular for Indian professionals in Gulf"
+    - name: "Relocate.me"
+      url: "https://relocate.me"
+      region: "Global"
+      notes: "Jobs with relocation packages"
+    - name: "Landing.jobs"
+      url: "https://landing.jobs"
+      region: "Europe"
+      notes: "Tech jobs in Europe with relocation support"
+
+study_plan:
+  focus_areas:
+    - "System Design for ML"
+    - "LLM/GenAI Architecture"
+    - "MLOps & Production ML"
+    - "Coding interviews (LeetCode medium/hard)"
+    - "ML System Design interviews"
+    - "Behavioral interviews (STAR method)"
+  weekly_hours_available: 15
+  target_start_date: "2026-05-01"
+  interview_readiness_target: "2026-06-15"
+
+messaging:
+  auto_send_interested: false
+  auto_send_decline: false
+  availability: "weekdays between 10am-6pm IST"
+  min_fit_score_to_reply: 50
+  intro_template: |
+    Hi, I'm Sachin — a Senior ML Engineer with 8 years of experience
+    in GenAI, MLOps, and cloud optimization. Most recently at ResMed, I led
+    a GenAI-powered platform using LLMs, RAG, and AWS SageMaker. Previously
+    at Tiger Analytics, I designed an MLOps platform for NatWest (showcased
+    at AWS re:Invent). I'm actively looking for senior ML roles in Berlin
+    and am open to relocation with visa sponsorship.
+
+reporting:
+  channels:
+    telegram: true
+    email: true
+  schedule:
+    daily: "20:00"
+    weekly: "SUN 20:00"
+  telegram:
+    send_instant_alerts: true
+    alert_threshold: 85
+  email:
+    include_csv: false
+
+scheduler:
+  timezone: "Asia/Kolkata"
+  jobs:
+    # === Hybrid daily flow (Option A) ===
+    search:
+      cron: "0 8 * * *"         # 8 AM IST: refresh job DB across all platforms
+      enabled: true
+    email_apply:
+      cron: "30 8 * * *"        # 8:30 AM IST: send direct-email applications
+      enabled: true
+    linkedin_apply:
+      cron: "0 10 * * *"        # 10 AM IST: LinkedIn Easy Apply (15-20 applications/day)
+      enabled: true
+    join_apply:
+      cron: "30 11 * * *"       # 11:30 AM IST: join.com batch (Arbeitnow visa-sponsored ATS)
+      enabled: true
+    linkedin_hr_connect:
+      cron: "0 12 * * *"        # 12 PM IST: harvest ~25 Berlin AI recruiters
+      enabled: true
+    indeed_apply:
+      cron: "0 14 * * *"        # 2 PM IST: Indeed Easy Apply
+      enabled: false             # DEFERRED: per-employer ATS too varied
+    hybrid_report:
+      cron: "0 20 * * *"        # 8 PM IST: send daily HTML email report with cover letters
+      enabled: true
+
+    # === Reliability tasks ===
+    weekly_report:
+      cron: "0 20 * * 0"        # Sunday 8 PM IST: weekly summary
+      enabled: true
+    study_plan:
+      cron: "0 7 * * 1"         # Monday 7 AM IST: refresh study plan
+      enabled: true
+    career_advice:
+      cron: "0 8 * * 1"         # Monday 8 AM IST: career insights
+      enabled: true
+
+    # === Disabled (LinkedIn risk + Naukri headless detection) ===
+    apply:
+      cron: "0 9 * * *"
+      enabled: false             # Disabled — browser apply is unreliable
+      max_per_run: 10
+    linkedin_scan:
+      cron: "0 */6 * * *"
+      enabled: false             # Disabled — LinkedIn anti-bot risk
+    check_messages:
+      cron: "0 */2 * * *"
+      enabled: false             # Disabled — LinkedIn anti-bot risk
+    scan_meetings:
+      cron: "*/15 * * * *"
+      enabled: false             # Optional — re-enable if you want meeting recordings
+    daily_report:
+      cron: "0 20 * * *"
+      enabled: false             # Replaced by hybrid_report

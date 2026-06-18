@@ -36,42 +36,40 @@ _VISION_SHOTS_DIR = Path(__file__).resolve().parent.parent / "data" / "vision_sh
 _VISION_SHOTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
+# NOTE: Profile constants below intentionally omit personal contact details
+# (email, phone). The vision fallback only needs role/experience/location
+# context to decide what to click — never to type contact info. Email/phone
+# answers come from data/form_qa.yaml + data/profile.yaml (both gitignored).
+# Keep these constants free of PII so the repo stays publishable.
+
 KRITIKA_PROFILE = """\
-Profile of the applicant (Kritika Saraswat):
+Profile of the applicant (candidate A):
 - Role: Senior AI Engineer, 7 years experience
-- Current company: Sequoia
-- Current CTC: 45 LPA (4500000 INR per annum)
-- Expected CTC: 70 LPA (7000000 INR)
+- Current CTC band: middle
 - Notice period: 2 months / 60 days
 - Current location: Bengaluru, Karnataka, India
 - Willing to relocate within India: YES
-- Date of birth: 09 Feb 1997 (age 28)
 - Gender: Female
 - Highest qualification: Postgraduate (Master's)
 - Authorized to work in India: YES
 - Open to: full-time, contract, hybrid, remote
 - Skills: Python, Machine Learning, GenAI, LLM, LangChain, LangGraph, RAG, AWS, Docker, FastAPI
-- Email: REDACTED@example.com  |  Phone: +9100000000001
 """
 
 SACHIN_PROFILE = """\
-Profile of the applicant (Sachin Singh):
-- Role: Senior ML Engineer, 8 years experience (currently at TrueBalance)
-- Current company: TrueBalance (regulated fintech / lending)
-- Current CTC: 55 LPA fixed (5500000 INR per annum)
-- Expected CTC: 80 LPA (8000000 INR) for India; for international roles seeks
-  Berlin €110k / Dubai equivalent / Tokyo equivalent — visa sponsorship REQUIRED
+Profile of the applicant (candidate B):
+- Role: Senior ML Engineer, 8 years experience
+- Current CTC band: upper-middle
+- Expected: international roles (Berlin / Dubai / Tokyo) — visa sponsorship REQUIRED
 - Notice period: 2 months / 60 days
 - Current location: Bangalore, India
-- Willing to relocate internationally with visa sponsorship: YES (Berlin / Dubai / Tokyo)
+- Willing to relocate internationally with visa sponsorship: YES
 - Authorized to work without sponsorship outside India: NO
 - Gender: Male
 - Highest qualification: Postgraduate
 - Open to: full-time, contract, freelance, remote, hybrid
 - Skills: Python, Machine Learning, GenAI/LLM, LangGraph, MCP, RAG, vector DBs
-  (Weaviate, Qdrant), Claude/GPT/Llama, AWS, Azure, MLOps, real-time inference
-  at scale (sub-200ms at 10M+ users)
-- Email: REDACTED@example.com  |  Phone: +9100000000000
+  (Weaviate, Qdrant), Claude/GPT/Llama, AWS, Azure, MLOps, real-time inference at scale
 """
 
 

@@ -97,3 +97,57 @@ python main.py --report-only
 7. Cover letters and messages must sound human, not robotic
 8. Always deduplicate — check DB before applying to same job twice
 9. Use type hints and keep functions small and testable
+
+## CRITICAL — Form Filling Rule (READ THIS BEFORE EDITING ANY auto-apply CODE)
+
+**ALWAYS classify the question text BEFORE filling any field.**
+
+**NEVER write code like this:**
+```python
+# DO NOT DO THIS
+for textarea in page.query_selector_all('textarea'):
+    if textarea is empty:
+        textarea.fill(cover_letter)  # ← cover letter lands in WRONG fields
+```
+
+**Instead use the classifier:**
+```python
+from src.form_classifier import classify_question, get_visible_question
+
+question = await get_visible_question(page)
+qa = classify_question(question)
+if qa and qa['field_type'] == 'long_text' and qa.get('answer_type') == 'cover_letter':
+    # ONLY fill cover letter when question explicitly asks for it
+    textarea.fill(cover)
+```
+
+The cover letter is **only** valid for these question types:
+- "cover letter", "motivation letter", "anschreiben"
+- "why are you interested", "why this role", "why this company"
+- "what makes you a good fit", "why should we hire you", "tell us about yourself"
+
+For everything else (location, name, email, salary, etc.) — use the matching answer
+from `data/form_qa.yaml`. If no pattern matches, **SKIP the field — don't guess.**
+
+See `docs/form_filling_strategy.md` for the full strategy.
+
+## Standard Form Answers
+
+All applicant-specific form answers (name, email, phone, current/expected CTC,
+notice period, visa, years of experience, etc.) live in the **gitignored** files
+`data/profile.yaml` (master profile) and `data/form_qa.yaml` (question pattern →
+answer mapping). These files are NEVER committed.
+
+For local development, copy `data/profile.example.yaml` to `data/profile.yaml`
+and fill in your details.
+
+Sample fields used by `src/form_classifier.py`:
+
+- name, first_name, last_name
+- email, phone, phone_pretty
+- linkedin_url, portfolio_url
+- current_location, city, state, country, postal_code, nationality
+- visa_status, visa_sponsorship_required, authorized_without_sponsorship
+- current_ctc, expected_salary, notice_period_days
+- years_of_experience, willing_to_relocate, fluent_english
+- current_employer, education, certifications, earliest_start_date
