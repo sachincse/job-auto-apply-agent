@@ -36,7 +36,7 @@ import aiosqlite
 
 from src.browser import get_browser, linkedin_login, _human_delay
 from src.config import BASE_DIR
-from src.hr_connect import render_note
+from src.hr_connect import render_note, is_blocked
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("connect-hr-google-india")
@@ -188,6 +188,12 @@ async def harvest_search_results(page, search_url: str, limit: int = 10) -> list
         # Stop at common LinkedIn UI strings
         after = re.split(r"\b(Message|Connect|Follow|View .{1,40} profile|See more|Show all)\b|[•·]", after, maxsplit=1)[0]
         role_at_company = after.strip(" ·•,.")[:120]
+        # HARD BLOCKLIST: skip without visiting/messaging (user rule 2026-06-18).
+        # Check BOTH the parsed name AND the raw anchor/block text so even if
+        # name-parsing misses it, the block text catches it.
+        if is_blocked(name) or is_blocked(atext) or is_blocked(block[:120]):
+            logger.info(f"  ⊘ BLOCKED name match — skip {name!r}")
+            continue
         # Heuristic: must mention recruiter/talent OR explicitly Google to keep it on-target
         full_lower = block.lower()
         if not any(k in full_lower for k in ("recruiter", "talent acquisition", "talent partner",
@@ -274,6 +280,10 @@ async def main():
                 if len(proposals) >= MAX_CONNECTS:
                     break
                 if p["url"] in seen_profile:
+                    continue
+                # HARD BLOCKLIST — defense in depth in case harvest filter missed.
+                if is_blocked(p["name"]) or is_blocked(p["url"]):
+                    print(f"  ⊘ BLOCKED — skip {p['name']!r}")
                     continue
                 seen_profile.add(p["url"])
                 if await already_sent(p["url"], days=90):

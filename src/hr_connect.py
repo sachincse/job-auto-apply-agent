@@ -67,6 +67,25 @@ TRIM_SEQUENCE = [
 _VISION_SHOTS_DIR = Path(__file__).resolve().parent.parent / "data" / "vision_shots"
 _VISION_SHOTS_DIR.mkdir(parents=True, exist_ok=True)
 
+
+# Hard blocklist — any LinkedIn profile whose first/last name matches one of
+# these (case-insensitive, substring) is SKIPPED entirely. No search, no view,
+# no message. User-instructed rule (2026-06-18).
+BLOCKED_NAMES = {
+    "sweta",
+}
+
+
+def is_blocked(profile_name: str) -> bool:
+    """True if the recipient's name matches any entry in BLOCKED_NAMES.
+    Substring + case-insensitive match. Applied at harvest step so we never
+    even open the blocked person's profile page.
+    """
+    if not profile_name:
+        return False
+    n = profile_name.lower()
+    return any(bn in n for bn in BLOCKED_NAMES)
+
 # In-process cache: company_name (normalized) -> company_context phrase
 _CONTEXT_CACHE: dict[str, str] = {}
 

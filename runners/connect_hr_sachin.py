@@ -37,7 +37,7 @@ import aiosqlite
 
 from src.browser import get_browser, linkedin_login, _human_delay
 from src.config import BASE_DIR
-from src.hr_connect import build_note_for, generate_company_context
+from src.hr_connect import build_note_for, generate_company_context, is_blocked
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("connect-hr")
@@ -238,6 +238,10 @@ async def fetch_job_context(page, job_url: str) -> tuple[str, str, str, str, lis
             role_block = block[len(name):] if name and name in block else block
             role_block = re.split(r"\b(Connect|Follow|View profile|See more|Show all)\b|[•·]", role_block, maxsplit=1)[0]
             role_block = role_block.strip(" ·•,.")[:120]
+            # HARD BLOCKLIST — skip without visiting/messaging (user rule 2026-06-18).
+            if is_blocked(name) or is_blocked(atext) or is_blocked(block[:120]):
+                logger.info(f"  ⊘ BLOCKED name match — skip {name!r}")
+                continue
             profiles.append({
                 "url": p["url"],
                 "name": name or "there",
@@ -340,6 +344,10 @@ async def main():
             for p in profiles[:2]:  # at most 2 per role
                 if len(proposals) >= MAX_CONNECTS:
                     break
+                # HARD BLOCKLIST — defense in depth.
+                if is_blocked(p["name"]) or is_blocked(p["url"]):
+                    print(f"   ⊘ BLOCKED — skip {p['name']!r}")
+                    continue
                 if await already_sent(p["url"], days=90):
                     print(f"   ↪ already sent to {p['name']} ({p['url']}) — skip")
                     continue
