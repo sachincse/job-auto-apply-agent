@@ -49,6 +49,37 @@ TEMPLATES = {
         "{company} — {company_context} lines up with my stack. Would value 15 "
         "min on whether my background fits your team's hiring."
     ),
+    # Referral-ask variant for high-value targets (Google India ML/SWE roles).
+    # Explicit referral request + concrete capability match. Use after locating
+    # a SPECIFIC open req that maps to candidate's experience.
+    "v4_referral": (
+        "Hi {first_name} — 8yr senior ML at TrueBalance: LangGraph + RAG "
+        "(Weaviate, Claude/GPT) in regulated fintech, sub-200ms inference at "
+        "10M+ users. Saw {company}'s {role} req — direct fit. Would you be "
+        "open to a referral? Happy to share resume + walk through the match."
+    ),
+    # Same referral pattern but for Kritika (Senior AI Eng, 7yr).
+    "v4_referral_kritika": (
+        "Hi {first_name} — Kritika here, 7yr Senior AI Engineer (GenAI/LLM, "
+        "LangChain, RAG with Weaviate, AWS prod deployments). Saw {company}'s "
+        "{role} req — strong overlap with my stack. Would you be open to a "
+        "referral? Happy to share resume + portfolio."
+    ),
+    # Outreach to LinkedIn POST author (HR/recruiter who posted "we're hiring"
+    # on their feed). Sachin variant — references the post they made.
+    "v5_post_outreach_sachin": (
+        "Hi {first_name} — saw your {company} {role} post. 8yr senior ML at "
+        "TrueBalance: LangGraph + RAG (Weaviate, Claude/GPT) in regulated "
+        "fintech, sub-200ms inference at 10M+ users. Direct fit — could I "
+        "share resume + a 15-min walk-through?"
+    ),
+    # Same — Kritika variant.
+    "v5_post_outreach_kritika": (
+        "Hi {first_name} — saw your {company} {role} post. I'm a Senior AI "
+        "Engineer (7yr) with GenAI/LLM, LangChain, RAG (Weaviate), AWS prod "
+        "deployments. Strong overlap with the role — could I share my resume "
+        "and a quick portfolio walk-through?"
+    ),
 }
 
 # Trim sequence applied in order until ≤300. Workflow design notes (b).
