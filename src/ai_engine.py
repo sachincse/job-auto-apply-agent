@@ -23,6 +23,35 @@ def _profile_summary() -> str:
     )
 
 
+def _keyword_score(title: str, company: str, description: str) -> int:
+    """Fast offline scorer — no LLM call. Used when iterating through many jobs.
+    Returns 0-100 based on simple keyword matches against AI/ML/senior signals.
+    """
+    text = f"{title} {company} {description}".lower()
+    score = 0
+    # Strong positive signals
+    for kw, weight in [
+        ("senior", 12), ("lead", 12), ("staff", 10), ("principal", 10),
+        ("machine learning", 15), ("ml engineer", 15), ("ai engineer", 15),
+        ("generative ai", 12), ("llm", 10), ("genai", 10),
+        ("langchain", 8), ("langgraph", 10), ("rag", 8),
+        ("computer vision", 6), ("nlp", 6), ("deep learning", 6),
+        ("mlops", 8), ("data scientist", 8),
+        ("python", 5), ("aws", 4), ("gcp", 4), ("azure", 4),
+        ("visa", 8), ("sponsorship", 10), ("relocation", 8), ("blue card", 12),
+        ("remote", 5), ("hybrid", 3),
+        ("dubai", 6), ("berlin", 6), ("tokyo", 6), ("amsterdam", 6),
+        ("singapore", 4), ("munich", 6),
+    ]:
+        if kw in text:
+            score += weight
+    # Mild negative for junior/intern
+    for kw, weight in [("intern", -20), ("junior", -10), ("entry level", -15)]:
+        if kw in text:
+            score += weight
+    return max(0, min(100, score))
+
+
 def score_job(title: str, company: str, description: str) -> int:
     """Score a job 0-100 for how well it matches the user's profile."""
     response = client.messages.create(
