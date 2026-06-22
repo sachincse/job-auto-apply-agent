@@ -8,18 +8,34 @@ client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
 
 def _profile_summary() -> str:
-    profile = load_profile()
-    p = profile["personal"]
-    s = profile["skills"]
-    e = profile["experience"]
+    """Schema-defensive: tolerate missing keys (profile.yaml shape varies)."""
+    profile = load_profile() or {}
+    p = profile.get("personal", {}) or {}
+    s = profile.get("skills", {}) or {}
+    e = profile.get("experience", {}) or {}
+    js = profile.get("job_search", {}) or {}
+
+    skills_list = (s.get("primary", []) or []) + (s.get("frameworks", []) or []) + (s.get("tools", []) or [])
+
+    # Location: try 'location', then 'location_targets' (list of {name,...}), then fall back
+    loc = js.get("location")
+    if not loc:
+        targets = js.get("location_targets") or []
+        if targets:
+            loc = ", ".join(t.get("name", "") for t in targets if isinstance(t, dict) and t.get("name"))
+    loc = loc or "Remote / Worldwide"
+
+    summary = e.get("summary") or e.get("current_employer") or "Senior engineer"
+    keywords = js.get("keywords", []) or []
+
     return (
-        f"Name: {p['name']}\n"
-        f"Skills: {', '.join(s['primary'] + s['frameworks'] + s['tools'])}\n"
-        f"Experience: {e['years']} years, {e['level']} level\n"
-        f"Summary: {e['summary']}\n"
-        f"Looking for: {', '.join(profile['job_search']['keywords'])}\n"
-        f"Location pref: {profile['job_search']['location']}\n"
-        f"Salary range: ${profile['job_search'].get('salary_min', 'N/A')}-${profile['job_search'].get('salary_max', 'N/A')}"
+        f"Name: {p.get('name', 'Candidate')}\n"
+        f"Skills: {', '.join(skills_list) if skills_list else 'Python, ML, AI'}\n"
+        f"Experience: {e.get('years', 'N/A')} years, {e.get('level', 'senior')} level\n"
+        f"Summary: {summary}\n"
+        f"Looking for: {', '.join(keywords) if keywords else 'AI/ML engineering roles'}\n"
+        f"Location pref: {loc}\n"
+        f"Salary range: ${js.get('salary_min', 'N/A')}-${js.get('salary_max', 'N/A')}"
     )
 
 
